@@ -18,21 +18,21 @@ function playRound(playerSelection, computerSelection) {
         switch (playerSelection) {
             case 'rock':
                 if (computerSelection == 'paper') {
-                    return 0;
+                    return 'loss';
                 } else {
-                    return 1;
+                    return 'win';
                 }
             case 'paper':
                 if (computerSelection ==  'scissors') {
-                    return 0;
+                    return 'loss';
                 } else {
-                    return 1;
+                    return 'win';
                 }
             case 'scissors':
                 if (computerSelection == 'rock') {
-                    return 0;
+                    return 'loss';
                 } else {
-                    return 1;
+                    return 'win';
                 }
         }
     }
@@ -48,11 +48,11 @@ function game() {
         let result = playRound(playerChoice, computerChoice);
 
         switch (result) {
-            case 0:
+            case 'loss':
                 console.log(`You Lose! ${playerChoice} gets beaten by ${computerChoice}!.`);
                 computerScore += 1
                 break;
-            case 1:
+            case 'win':
                 console.log(`You Win! ${playerChoice} beats ${computerChoice}.`);
                 playerScore += 1
                 break;
