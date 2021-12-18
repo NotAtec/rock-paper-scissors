@@ -13,27 +13,52 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     if (playerSelection == computerSelection) {
-        return `That's a Tie! You both chose ${playerSelection}!`;
+        return 2;
     } else {
         switch (playerSelection) {
             case 'rock':
                 if (computerSelection == 'paper') {
-                    return 'You Lose! Rock gets beaten by Paper';
+                    return 0;
                 } else {
-                    return 'You Win! Rock beats Scissors';
+                    return 1;
                 }
             case 'paper':
                 if (computerSelection ==  'scissors') {
-                    return 'You Lose! Paper gets beaten by Scissors';
+                    return 0;
                 } else {
-                    return 'You Win! Paper beats Rock';
+                    return 1;
                 }
             case 'scissors':
                 if (computerSelection == 'rock') {
-                    return 'You Lose! Scissors gets beaten by Rock';
+                    return 0;
                 } else {
-                    return 'You Win! Scissors beats Paper';
+                    return 1;
                 }
         }
+    }
+}
+
+
+function game() {
+    let computerScore = 0;
+    let playerScore = 0;
+    for (let i=0; i < 5; i++) {
+        let computerChoice = computerPlay();
+        let playerChoice = prompt('What do you choose? (Rock, Paper, Scissors)');
+        let result = playRound(playerChoice, computerChoice);
+
+        switch (result) {
+            case 0:
+                console.log(`You Lose! ${playerChoice} gets beaten by ${computerChoice}!.`);
+                computerScore += 1
+                break;
+            case 1:
+                console.log(`You Win! ${playerChoice} beats ${computerChoice}.`);
+                playerScore += 1
+                break;
+            default:
+                console.log(`It's a Tie! You and the computer chose ${playerChoice}.`);
+        }
+        console.log(`Current Score: You: ${playerScore}, Computer: ${computerScore}`);
     }
 }
