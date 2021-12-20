@@ -5,11 +5,11 @@ buttons.forEach((button) => button.addEventListener('click', clickHandler));
 
 function clickHandler(e) {
     const computerSelection = computerPlay();
-    const playerSelection = e.target.id;
+    const playerSelection = this.id;
     let result = playRound(playerSelection, computerSelection);
     updateStats(result);
     updateDOM(result, playerSelection, computerSelection);
-    showUpdatedStats();
+    showUpdatedStats(playerSelection, computerSelection);
     checkWinner();
 }
 
@@ -84,7 +84,7 @@ function showWinText(playerSelection, computerSelection) {
     const container = document.querySelector('#result');
     container.textContent = '';
 
-    let content = document.createElement('h2');
+    let content = document.createElement('h1');
     content.textContent = `You won!` 
     container.appendChild(content);
     
@@ -97,7 +97,7 @@ function showLossText(playerSelection, computerSelection) {
     const container = document.querySelector('#result');
     container.textContent = '';
 
-    let content = document.createElement('h2');
+    let content = document.createElement('h1');
     content.textContent = `You lost!`;
     container.appendChild(content);
 
@@ -110,7 +110,7 @@ function showTieText(playerSelection, computerSelection) {
     const container = document.querySelector('#result');
     container.textContent = '';   
 
-    let content = document.createElement('h2');
+    let content = document.createElement('h1');
     content.textContent = 'It\'s a tie!';
     container.appendChild(content);
 
@@ -119,16 +119,26 @@ function showTieText(playerSelection, computerSelection) {
     container.appendChild(content);
 }
 
-function showUpdatedStats() {
+function showUpdatedStats(playerSelection, computerSelection) {
     let container = document.querySelector('#player');
     container.textContent = '';
+    
+    let content = document.createElement('div');
+    content.classList.add('img-box');
+    content.innerHTML = `<img src="img/${playerSelection}.png" alt="A ${playerSelection}">`
+    container.appendChild(content);
 
-    let content = document.createElement('p');
+    content = document.createElement('p');
     content.textContent = `Player: ${playerScore}`
     container.appendChild(content);
 
     container = document.querySelector('#computer');
     container.textContent = '';
+
+    content = document.createElement('div');
+    content.classList.add('img-box');
+    content.innerHTML = `<img src="img/${computerSelection}.png" alt="A ${computerSelection}">`
+    container.appendChild(content);
 
     content = document.createElement('p');
     content.textContent = `Computer: ${computerScore}`;

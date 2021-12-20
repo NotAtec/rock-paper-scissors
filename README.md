@@ -11,3 +11,6 @@ A brower based Rock Paper Scissors game to play against the computer
 - HTML
 - CSS
 - Javascript
+
+## Credits
+- [OpenMoji](https://openmoji.org/about/) Open Source Emoji Set
