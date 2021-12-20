@@ -3,6 +3,16 @@ let computerScore = 0
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => button.addEventListener('click', clickHandler));
 
+function clickHandler(e) {
+    const computerSelection = computerPlay();
+    const playerSelection = e.target.id;
+    let result = playRound(playerSelection, computerSelection);
+    updateStats(result);
+    updateDOM(result, playerSelection, computerSelection);
+    showUpdatedStats();
+    checkWinner();
+}
+
 function computerPlay() {
     let i = Math.floor(Math.random() * 3);
     switch (i) {
@@ -43,16 +53,6 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function clickHandler(e) {
-    const computerSelection = computerPlay();
-    const playerSelection = e.target.id;
-    let result = playRound(playerSelection, computerSelection);
-    updateStats(result);
-    updateDOM(result, playerSelection, computerSelection);
-    showUpdatedStats();
-    checkWinner();
-}
-
 function updateStats(result) {
     switch (result) {
         case 'loss':
@@ -66,9 +66,6 @@ function updateStats(result) {
 }
 
 function updateDOM(result, playerSelection, computerSelection) {
-    let container = '';
-    let content = '';
-
     switch (result) {
         case 'win': 
             showWinText(playerSelection, computerSelection);
