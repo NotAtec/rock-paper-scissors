@@ -44,6 +44,8 @@ function clickHandler(e) {
     let result = playRound(playerSelection, computerSelection);
     updateStats(result);
     updateDOM(result, playerSelection, computerSelection);
+    showUpdatedStats();
+    checkWinner();
 }
 
 function updateStats(result) {
@@ -71,7 +73,7 @@ function updateDOM(result, playerSelection, computerSelection) {
             break;
         case 'tie':
             showTieText(playerSelection, computerSelection);
-            return;
+            break;
     }
     
 }
@@ -90,28 +92,53 @@ function showWinText(playerSelection, computerSelection) {
 }
 
 function showLossText(playerSelection, computerSelection) {
-            container = document.querySelector('#result');
-            container.textContent = '';
+    const container = document.querySelector('#result');
+    container.textContent = '';
 
-            content = document.createElement('h2');
-            content.textContent = `You lost!`;
-            container.appendChild(content);
+    let content = document.createElement('h2');
+    content.textContent = `You lost!`;
+    container.appendChild(content);
 
-            content = document.createElement('p');
-            content.textContent = `${playerSelection} is beaten by ${computerSelection}!`
-            container.appendChild(content);
+    content = document.createElement('p');
+    content.textContent = `${playerSelection} is beaten by ${computerSelection}!`
+    container.appendChild(content);
 }
 
 function showTieText(playerSelection, computerSelection) {
-    container = document.querySelector('#result');
-    container.textContent = '';        
-    content = document.createElement('h2');
+    const container = document.querySelector('#result');
+    container.textContent = '';   
+
+    let content = document.createElement('h2');
     content.textContent = 'It\'s a tie!';
     container.appendChild(content);
 
     content = document.createElement('p');
     content.textContent = `${playerSelection} ties with ${computerSelection}!`;
     container.appendChild(content);
+}
+
+function showUpdatedStats() {
+    let container = document.querySelector('#player');
+    container.textContent = '';
+
+    let content = document.createElement('p');
+    content.textContent = `Player: ${playerScore}`
+    container.appendChild(content);
+
+    container = document.querySelector('#computer');
+    container.textContent = '';
+
+    content = document.createElement('p');
+    content.textContent = `Computer: ${computerScore}`;
+    container.appendChild(content);
+}
+
+function checkWinner() {
+    if (playerScore == 5) {
+        alert('You Won!');
+    } else if (computerScore == 5) {
+        alert('You Lost!');
+    }
 }
 
 let playerScore = 0
