@@ -172,9 +172,13 @@ function resetTopText() {
 
 function checkWinner() {
     if (playerScore == 5) {
+        const text = document.querySelector('#modal-title');
+        text.innerHTML = "<h2>You win!</h2>"
         const modal = document.querySelector('#modal-overlay');
         modal.style.display = "flex";
     } else if (computerScore == 5) {
+        const text = document.querySelector('#modal-title');
+        text.innerHTML = "<h2>You lose.. :(</h2>"
         const modal = document.querySelector('#modal-overlay');
         modal.style.display = "flex";
     }
