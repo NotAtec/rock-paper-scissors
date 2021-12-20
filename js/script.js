@@ -38,34 +38,39 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function setupRound(e) {
+function clickHandler(e) {
     const computerSelection = computerPlay();
     const playerSelection = e.target.id;
-    playRound(playerSelection, computerSelection);
+    let result = playRound(playerSelection, computerSelection);
+    updateStats(result);
+    updateDOM(result);
 }
-//function game() {
-//    let computerScore = 0;
-//    let playerScore = 0;
-//    for (let i=0; i < 5; i++) {
-//        let computerChoice = computerPlay();
-//        let playerChoice = prompt('What do you choose? (Rock, Paper, Scissors)');
-//        let result = playRound(playerChoice, computerChoice);
-//
-//        switch (result) {
-//            case 'loss':
-//                console.log(`You Lose! ${playerChoice} gets beaten by ${computerChoice}!.`);
-//                computerScore += 1
-//                break;
-//            case 'win':
-//              console.log(`You Win! ${playerChoice} beats ${computerChoice}.`);
-//                playerScore += 1
-//                break;
-//            default:
-//                console.log(`It's a Tie! You and the computer chose ${playerChoice}.`);
-//        }
-//        console.log(`Current Score: You: ${playerScore}, Computer: ${computerScore}`);
-//    }
-//}
 
+function updateStats(result) {
+    switch (result) {
+        case 'loss':
+            computerScore += 1;
+            break;
+        case 'win':
+            playerScore += 1;
+            break;
+        default:
+    }
+}
+
+function updateDOM(result) {
+    if (result == 'tie') {
+        //Add tie text, nothing else
+        
+        return;
+    } else {
+        //Add result text
+        //Replace Computer text
+        //Replace player text
+    }
+}
+
+let playerScore = 0
+let computerScore = 0
 const buttons = document.querySelectorAll('button');
-buttons.forEach((button) => button.addEventListener('click', setupRound));
+buttons.forEach((button) => button.addEventListener('click', clickHandler));
