@@ -1,7 +1,9 @@
 let playerScore = 0
 let computerScore = 0
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.weapon');
 buttons.forEach((button) => button.addEventListener('click', clickHandler));
+const modalButton = document.querySelector('#modal-button');
+modalButton.addEventListener('click', winHandler);
 
 function clickHandler(e) {
     const computerSelection = computerPlay();
@@ -11,6 +13,15 @@ function clickHandler(e) {
     updateDOM(result, playerSelection, computerSelection);
     showUpdatedStats(playerSelection, computerSelection);
     checkWinner();
+}
+
+function winHandler(e) {
+    playerScore = 0;
+    computerScore = 0;
+
+    showUpdatedStats('questionmark', 'questionmark')
+    const modal = document.querySelector('#modal-overlay');
+    modal.style.display = 'none';
 }
 
 function computerPlay() {
@@ -147,8 +158,10 @@ function showUpdatedStats(playerSelection, computerSelection) {
 
 function checkWinner() {
     if (playerScore == 5) {
-        alert('You Won!');
+        const modal = document.querySelector('#modal-overlay');
+        modal.style.display = "flex";
     } else if (computerScore == 5) {
-        alert('You Lost!');
+        const modal = document.querySelector('#modal-overlay');
+        modal.style.display = "flex";
     }
 }
