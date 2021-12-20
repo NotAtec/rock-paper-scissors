@@ -1,15 +1,13 @@
 # Rock Paper Scissors
-A console based Rock Paper Scissors game to play against the computer
+A brower based Rock Paper Scissors game to play against the computer
 
 
 ## Features
-- Played from the CLI, with prompt() for player input.
+- Played in the browser, using button input.
 - Basic RNG for Computer choice.
-
-### Future addons
-In the future, the following features might get added
-- [ ] Choice function to choose amount of rounds.
-- [ ] Basic strategy for the computer
+- Automatic win / loss detection based on points tally.
 
 ## Built With
+- HTML
+- CSS
 - Javascript
