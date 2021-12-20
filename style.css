@@ -14,3 +14,25 @@ body {
     margin: 0;
     padding: 0;
 }
+
+#result {
+    flex-direction: column;
+    align-items: center;
+}
+
+#rps-container {
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+}
+
+h2 {
+    margin-top: 32px;
+    margin-bottom: 4px;
+    padding: 0;
+}
+
+p {
+    margin-top: 4px;
+    margin-bottom: 0px;
+}

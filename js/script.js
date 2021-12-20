@@ -43,7 +43,7 @@ function clickHandler(e) {
     const playerSelection = e.target.id;
     let result = playRound(playerSelection, computerSelection);
     updateStats(result);
-    updateDOM(result);
+    updateDOM(result, playerSelection, computerSelection);
 }
 
 function updateStats(result) {
@@ -58,16 +58,60 @@ function updateStats(result) {
     }
 }
 
-function updateDOM(result) {
-    if (result == 'tie') {
-        //Add tie text, nothing else
-        
-        return;
-    } else {
-        //Add result text
-        //Replace Computer text
-        //Replace player text
+function updateDOM(result, playerSelection, computerSelection) {
+    let container = '';
+    let content = '';
+
+    switch (result) {
+        case 'win': 
+            showWinText(playerSelection, computerSelection);
+            break;
+        case 'loss':
+            showLossText(playerSelection, computerSelection);
+            break;
+        case 'tie':
+            showTieText(playerSelection, computerSelection);
+            return;
     }
+    
+}
+
+function showWinText(playerSelection, computerSelection) {
+    const container = document.querySelector('#result');
+    container.textContent = '';
+
+    let content = document.createElement('h2');
+    content.textContent = `You won!` 
+    container.appendChild(content);
+    
+    content = document.createElement('p');
+    content.textContent = `${playerSelection} beats ${computerSelection}!`;
+    container.appendChild(content);
+}
+
+function showLossText(playerSelection, computerSelection) {
+            container = document.querySelector('#result');
+            container.textContent = '';
+
+            content = document.createElement('h2');
+            content.textContent = `You lost!`;
+            container.appendChild(content);
+
+            content = document.createElement('p');
+            content.textContent = `${playerSelection} is beaten by ${computerSelection}!`
+            container.appendChild(content);
+}
+
+function showTieText(playerSelection, computerSelection) {
+    container = document.querySelector('#result');
+    container.textContent = '';        
+    content = document.createElement('h2');
+    content.textContent = 'It\'s a tie!';
+    container.appendChild(content);
+
+    content = document.createElement('p');
+    content.textContent = `${playerSelection} ties with ${computerSelection}!`;
+    container.appendChild(content);
 }
 
 let playerScore = 0
