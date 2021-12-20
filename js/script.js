@@ -19,6 +19,7 @@ function winHandler(e) {
     playerScore = 0;
     computerScore = 0;
 
+    resetTopText();
     showUpdatedStats('questionmark', 'questionmark')
     const modal = document.querySelector('#modal-overlay');
     modal.style.display = 'none';
@@ -154,6 +155,19 @@ function showUpdatedStats(playerSelection, computerSelection) {
     content = document.createElement('p');
     content.textContent = `Computer: ${computerScore}`;
     container.appendChild(content);
+}
+
+function resetTopText() {
+    const div = document.querySelector('#result');
+    div.textContent = '';
+
+    let content = document.createElement('h2');
+    content.textContent = 'Choose your fighter';
+    div.appendChild(content);
+
+    content = document.createElement('p');
+    content.textContent = 'First to 5 points wins';
+    div.appendChild(content);
 }
 
 function checkWinner() {
